@@ -47,6 +47,12 @@ sub to_virtual_hosted_style_url {
     );
 }
 
+sub to_endpoint_style_url {
+    my $self = shift;
+    my $endpoint_url = shift;
+    return sprintf("%s/%s/%s", $endpoint_url, $self->{bucket}, $self->key_and_query);
+}
+
 sub _region_specific_host {
     my $self = shift;
     my $region = shift;

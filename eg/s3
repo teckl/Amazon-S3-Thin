@@ -70,6 +70,9 @@ sub run {
             aws_secret_access_key => $crd->{aws_secret_access_key},
             region                => $region
         };
+        if (defined $ENV{ENDPOINT_URL}) {
+            $opt->{endpoint_url} = $ENV{ENDPOINT_URL};
+        }
         $self->{thin_client} = Amazon::S3::Thin->new($opt);
     }
     elsif (defined $ENV{AWS_ACCESS_KEY_ID} and defined $ENV{AWS_SECRET_ACCESS_KEY}) {

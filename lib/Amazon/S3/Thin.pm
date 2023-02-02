@@ -352,6 +352,8 @@ sub _compose_request {
     if ($self->{signature_version} == 4) {
         if ($self->virtual_host) {
             $url = $resource->to_virtual_hosted_style_url($protocol);
+        } elsif ($self->{endpoint_url}) {
+            $url = $resource->to_endpoint_style_url($self->{endpoint_url});
         } else {
             $url = $resource->to_path_style_url($protocol, $self->{region});
         }
